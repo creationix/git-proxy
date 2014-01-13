@@ -1,0 +1,25 @@
+{
+  "name": "git-proxy",
+  "version": "0.0.0",
+  "description": "A websocket to tcp git protocol proxy to enable websites to speak git://",
+  "dependencies": {
+    "ws": "~0.4.31"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/creationix/git-proxy.git"
+  },
+  "keywords": [
+    "js-git",
+    "proxy",
+    "websocket",
+    "tcp"
+  ],
+  "author": "Tim Caswell <tim@creationix.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/creationix/git-proxy/issues"
+  },
+  "homepage": "https://github.com/creationix/git-proxy"
+}
