@@ -1,23 +1,16 @@
-var http = require('http');
 var WebSocketServer = require('ws').Server;
 var net = require('net');
 var tls = require('tls');
 
-var server = http.createServer(onRequest);
-var wss = new WebSocketServer({server: server});
-server.listen(process.env.PORT || 8000);
-console.log("HTTP server listening on", server.address());
-
-function onRequest(req, res) {
-  res.statusCode = 404;
-  res.end("This only accepts websocket connections.");
-}
+var port = process.env.PORT || 8080;
+var server = new WebSocketServer({port: port});
+console.log("Proxy server listening on ws://localhost:%s/", port);
 
 function hostBase(host) {
   return host.match(/([^.:]+(?:\.com|\.org)?)(?:\:[0-9]+)?$/)[1];
 }
 
-wss.on('connection', function(ws) {
+server.on('connection', function(ws) {
   var req = ws.upgradeReq;
   if (!req.headers.host || !req.headers.origin || hostBase(req.headers.host) !== hostBase(req.headers.origin)) {
     ws.send("Only local origins allowed.");
