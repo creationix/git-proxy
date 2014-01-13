@@ -5,7 +5,7 @@ var tls = require('tls');
 
 var server = http.createServer(onRequest);
 var wss = new WebSocketServer({server: server});
-server.listen(process.env.PORT || 8001);
+server.listen(process.env.PORT || 8000);
 console.log("HTTP server listening on", server.address());
 
 function onRequest(req, res) {
@@ -19,7 +19,7 @@ function hostBase(host) {
 
 wss.on('connection', function(ws) {
   var req = ws.upgradeReq;
-  if (!req.host || !req.origin || hostBase(req.host) !== hostBase(req.origin)) {
+  if (!req.headers.host || !req.headers.origin || hostBase(req.headers.host) !== hostBase(req.headers.origin)) {
     ws.send("Only local origins allowed.");
     ws.close();
     return;
