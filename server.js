@@ -7,7 +7,7 @@ var server = new WebSocketServer({port: port});
 console.log("Proxy server listening on ws://localhost:%s/", port);
 
 function hostBase(host) {
-  return host.match(/([^.:]+(?:\.com|\.org)?)(?:\:[0-9]+)?$/)[1];
+  return host.match(/([^.:]+(?:\.com|\.org|\.net)?)(?:\:[0-9]+)?$/)[1];
 }
 
 server.on('connection', function(ws) {
